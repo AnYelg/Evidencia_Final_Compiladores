@@ -1,0 +1,1008 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> assignment
+Rule 1     assignment -> VARIABLE EQUAL expression
+Rule 2     assignment -> expression
+Rule 3     factor -> listValue
+Rule 4     assignment -> VARIABLE EQUAL flow
+Rule 5     flow -> VARIABLE CONNECT flow_functions
+Rule 6     flow_functions -> flow_function_call CONNECT flow_functions
+Rule 7     flow_functions -> flow_function_call
+Rule 8     flow_function_call -> VARIABLE LPAREN params RPAREN
+Rule 9     expression -> expression PLUS term
+Rule 10    expression -> expression MINUS term
+Rule 11    expression -> term
+Rule 12    expression -> string_def
+Rule 13    string_def -> STRING
+Rule 14    term -> exponent
+Rule 15    term -> term TIMES exponent
+Rule 16    term -> term DIV exponent
+Rule 17    exponent -> factor
+Rule 18    exponent -> factor EXP factor
+Rule 19    factor -> LBRACKET params RBRACKET
+Rule 20    listValue -> VARIABLE LBRACKET expression RBRACKET
+Rule 21    factor -> NUMBER
+Rule 22    factor -> VARIABLE
+Rule 23    factor -> LPAREN expression RPAREN
+Rule 24    factor -> function_call
+Rule 25    function_call -> VARIABLE LPAREN RPAREN
+Rule 26    function_call -> VARIABLE LPAREN params RPAREN
+Rule 27    params -> params COMMA expression
+Rule 28    params -> expression
+
+Terminals, with rules where they appear
+
+COMMA                : 27
+CONNECT              : 5 6
+DIV                  : 16
+EQUAL                : 1 4
+EXP                  : 18
+LBRACKET             : 19 20
+LPAREN               : 8 23 25 26
+MINUS                : 10
+NUMBER               : 21
+PLUS                 : 9
+RBRACKET             : 19 20
+RPAREN               : 8 23 25 26
+STRING               : 13
+TIMES                : 15
+VARIABLE             : 1 4 5 8 20 22 25 26
+error                : 
+
+Nonterminals, with rules where they appear
+
+assignment           : 0
+exponent             : 14 15 16
+expression           : 1 2 9 10 20 23 27 28
+factor               : 17 18 18
+flow                 : 4
+flow_function_call   : 6 7
+flow_functions       : 5 6
+function_call        : 24
+listValue            : 3
+params               : 8 19 26 27
+string_def           : 12
+term                 : 9 10 11 15 16
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . assignment
+    (1) assignment -> . VARIABLE EQUAL expression
+    (2) assignment -> . expression
+    (4) assignment -> . VARIABLE EQUAL flow
+    (9) expression -> . expression PLUS term
+    (10) expression -> . expression MINUS term
+    (11) expression -> . term
+    (12) expression -> . string_def
+    (14) term -> . exponent
+    (15) term -> . term TIMES exponent
+    (16) term -> . term DIV exponent
+    (13) string_def -> . STRING
+    (17) exponent -> . factor
+    (18) exponent -> . factor EXP factor
+    (3) factor -> . listValue
+    (19) factor -> . LBRACKET params RBRACKET
+    (21) factor -> . NUMBER
+    (22) factor -> . VARIABLE
+    (23) factor -> . LPAREN expression RPAREN
+    (24) factor -> . function_call
+    (20) listValue -> . VARIABLE LBRACKET expression RBRACKET
+    (25) function_call -> . VARIABLE LPAREN RPAREN
+    (26) function_call -> . VARIABLE LPAREN params RPAREN
+
+    VARIABLE        shift and go to state 2
+    STRING          shift and go to state 7
+    LBRACKET        shift and go to state 10
+    NUMBER          shift and go to state 11
+    LPAREN          shift and go to state 12
+
+    assignment                     shift and go to state 1
+    expression                     shift and go to state 3
+    term                           shift and go to state 4
+    string_def                     shift and go to state 5
+    exponent                       shift and go to state 6
+    factor                         shift and go to state 8
+    listValue                      shift and go to state 9
+    function_call                  shift and go to state 13
+
+state 1
+
+    (0) S' -> assignment .
+
+
+
+state 2
+
+    (1) assignment -> VARIABLE . EQUAL expression
+    (4) assignment -> VARIABLE . EQUAL flow
+    (22) factor -> VARIABLE .
+    (20) listValue -> VARIABLE . LBRACKET expression RBRACKET
+    (25) function_call -> VARIABLE . LPAREN RPAREN
+    (26) function_call -> VARIABLE . LPAREN params RPAREN
+
+    EQUAL           shift and go to state 14
+    EXP             reduce using rule 22 (factor -> VARIABLE .)
+    TIMES           reduce using rule 22 (factor -> VARIABLE .)
+    DIV             reduce using rule 22 (factor -> VARIABLE .)
+    PLUS            reduce using rule 22 (factor -> VARIABLE .)
+    MINUS           reduce using rule 22 (factor -> VARIABLE .)
+    $end            reduce using rule 22 (factor -> VARIABLE .)
+    LBRACKET        shift and go to state 15
+    LPAREN          shift and go to state 16
+
+
+state 3
+
+    (2) assignment -> expression .
+    (9) expression -> expression . PLUS term
+    (10) expression -> expression . MINUS term
+
+    $end            reduce using rule 2 (assignment -> expression .)
+    PLUS            shift and go to state 17
+    MINUS           shift and go to state 18
+
+
+state 4
+
+    (11) expression -> term .
+    (15) term -> term . TIMES exponent
+    (16) term -> term . DIV exponent
+
+    PLUS            reduce using rule 11 (expression -> term .)
+    MINUS           reduce using rule 11 (expression -> term .)
+    $end            reduce using rule 11 (expression -> term .)
+    RBRACKET        reduce using rule 11 (expression -> term .)
+    COMMA           reduce using rule 11 (expression -> term .)
+    RPAREN          reduce using rule 11 (expression -> term .)
+    TIMES           shift and go to state 19
+    DIV             shift and go to state 20
+
+
+state 5
+
+    (12) expression -> string_def .
+
+    PLUS            reduce using rule 12 (expression -> string_def .)
+    MINUS           reduce using rule 12 (expression -> string_def .)
+    $end            reduce using rule 12 (expression -> string_def .)
+    RBRACKET        reduce using rule 12 (expression -> string_def .)
+    COMMA           reduce using rule 12 (expression -> string_def .)
+    RPAREN          reduce using rule 12 (expression -> string_def .)
+
+
+state 6
+
+    (14) term -> exponent .
+
+    TIMES           reduce using rule 14 (term -> exponent .)
+    DIV             reduce using rule 14 (term -> exponent .)
+    PLUS            reduce using rule 14 (term -> exponent .)
+    MINUS           reduce using rule 14 (term -> exponent .)
+    $end            reduce using rule 14 (term -> exponent .)
+    RBRACKET        reduce using rule 14 (term -> exponent .)
+    COMMA           reduce using rule 14 (term -> exponent .)
+    RPAREN          reduce using rule 14 (term -> exponent .)
+
+
+state 7
+
+    (13) string_def -> STRING .
+
+    PLUS            reduce using rule 13 (string_def -> STRING .)
+    MINUS           reduce using rule 13 (string_def -> STRING .)
+    $end            reduce using rule 13 (string_def -> STRING .)
+    RBRACKET        reduce using rule 13 (string_def -> STRING .)
+    COMMA           reduce using rule 13 (string_def -> STRING .)
+    RPAREN          reduce using rule 13 (string_def -> STRING .)
+
+
+state 8
+
+    (17) exponent -> factor .
+    (18) exponent -> factor . EXP factor
+
+    TIMES           reduce using rule 17 (exponent -> factor .)
+    DIV             reduce using rule 17 (exponent -> factor .)
+    PLUS            reduce using rule 17 (exponent -> factor .)
+    MINUS           reduce using rule 17 (exponent -> factor .)
+    $end            reduce using rule 17 (exponent -> factor .)
+    RBRACKET        reduce using rule 17 (exponent -> factor .)
+    COMMA           reduce using rule 17 (exponent -> factor .)
+    RPAREN          reduce using rule 17 (exponent -> factor .)
+    EXP             shift and go to state 21
+
+
+state 9
+
+    (3) factor -> listValue .
+
+    EXP             reduce using rule 3 (factor -> listValue .)
+    TIMES           reduce using rule 3 (factor -> listValue .)
+    DIV             reduce using rule 3 (factor -> listValue .)
+    PLUS            reduce using rule 3 (factor -> listValue .)
+    MINUS           reduce using rule 3 (factor -> listValue .)
+    $end            reduce using rule 3 (factor -> listValue .)
+    RBRACKET        reduce using rule 3 (factor -> listValue .)
+    COMMA           reduce using rule 3 (factor -> listValue .)
+    RPAREN          reduce using rule 3 (factor -> listValue .)
+
+
+state 10
+
+    (19) factor -> LBRACKET . params RBRACKET
+    (27) params -> . params COMMA expression
+    (28) params -> . expression
+    (9) expression -> . expression PLUS term
+    (10) expression -> . expression MINUS term
+    (11) expression -> . term
+    (12) expression -> . string_def
+    (14) term -> . exponent
+    (15) term -> . term TIMES exponent
+    (16) term -> . term DIV exponent
+    (13) string_def -> . STRING
+    (17) exponent -> . factor
+    (18) exponent -> . factor EXP factor
+    (3) factor -> . listValue
+    (19) factor -> . LBRACKET params RBRACKET
+    (21) factor -> . NUMBER
+    (22) factor -> . VARIABLE
+    (23) factor -> . LPAREN expression RPAREN
+    (24) factor -> . function_call
+    (20) listValue -> . VARIABLE LBRACKET expression RBRACKET
+    (25) function_call -> . VARIABLE LPAREN RPAREN
+    (26) function_call -> . VARIABLE LPAREN params RPAREN
+
+    STRING          shift and go to state 7
+    LBRACKET        shift and go to state 10
+    NUMBER          shift and go to state 11
+    VARIABLE        shift and go to state 24
+    LPAREN          shift and go to state 12
+
+    params                         shift and go to state 22
+    expression                     shift and go to state 23
+    term                           shift and go to state 4
+    string_def                     shift and go to state 5
+    exponent                       shift and go to state 6
+    factor                         shift and go to state 8
+    listValue                      shift and go to state 9
+    function_call                  shift and go to state 13
+
+state 11
+
+    (21) factor -> NUMBER .
+
+    EXP             reduce using rule 21 (factor -> NUMBER .)
+    TIMES           reduce using rule 21 (factor -> NUMBER .)
+    DIV             reduce using rule 21 (factor -> NUMBER .)
+    PLUS            reduce using rule 21 (factor -> NUMBER .)
+    MINUS           reduce using rule 21 (factor -> NUMBER .)
+    $end            reduce using rule 21 (factor -> NUMBER .)
+    RBRACKET        reduce using rule 21 (factor -> NUMBER .)
+    COMMA           reduce using rule 21 (factor -> NUMBER .)
+    RPAREN          reduce using rule 21 (factor -> NUMBER .)
+
+
+state 12
+
+    (23) factor -> LPAREN . expression RPAREN
+    (9) expression -> . expression PLUS term
+    (10) expression -> . expression MINUS term
+    (11) expression -> . term
+    (12) expression -> . string_def
+    (14) term -> . exponent
+    (15) term -> . term TIMES exponent
+    (16) term -> . term DIV exponent
+    (13) string_def -> . STRING
+    (17) exponent -> . factor
+    (18) exponent -> . factor EXP factor
+    (3) factor -> . listValue
+    (19) factor -> . LBRACKET params RBRACKET
+    (21) factor -> . NUMBER
+    (22) factor -> . VARIABLE
+    (23) factor -> . LPAREN expression RPAREN
+    (24) factor -> . function_call
+    (20) listValue -> . VARIABLE LBRACKET expression RBRACKET
+    (25) function_call -> . VARIABLE LPAREN RPAREN
+    (26) function_call -> . VARIABLE LPAREN params RPAREN
+
+    STRING          shift and go to state 7
+    LBRACKET        shift and go to state 10
+    NUMBER          shift and go to state 11
+    VARIABLE        shift and go to state 24
+    LPAREN          shift and go to state 12
+
+    expression                     shift and go to state 25
+    term                           shift and go to state 4
+    string_def                     shift and go to state 5
+    exponent                       shift and go to state 6
+    factor                         shift and go to state 8
+    listValue                      shift and go to state 9
+    function_call                  shift and go to state 13
+
+state 13
+
+    (24) factor -> function_call .
+
+    EXP             reduce using rule 24 (factor -> function_call .)
+    TIMES           reduce using rule 24 (factor -> function_call .)
+    DIV             reduce using rule 24 (factor -> function_call .)
+    PLUS            reduce using rule 24 (factor -> function_call .)
+    MINUS           reduce using rule 24 (factor -> function_call .)
+    $end            reduce using rule 24 (factor -> function_call .)
+    RBRACKET        reduce using rule 24 (factor -> function_call .)
+    COMMA           reduce using rule 24 (factor -> function_call .)
+    RPAREN          reduce using rule 24 (factor -> function_call .)
+
+
+state 14
+
+    (1) assignment -> VARIABLE EQUAL . expression
+    (4) assignment -> VARIABLE EQUAL . flow
+    (9) expression -> . expression PLUS term
+    (10) expression -> . expression MINUS term
+    (11) expression -> . term
+    (12) expression -> . string_def
+    (5) flow -> . VARIABLE CONNECT flow_functions
+    (14) term -> . exponent
+    (15) term -> . term TIMES exponent
+    (16) term -> . term DIV exponent
+    (13) string_def -> . STRING
+    (17) exponent -> . factor
+    (18) exponent -> . factor EXP factor
+    (3) factor -> . listValue
+    (19) factor -> . LBRACKET params RBRACKET
+    (21) factor -> . NUMBER
+    (22) factor -> . VARIABLE
+    (23) factor -> . LPAREN expression RPAREN
+    (24) factor -> . function_call
+    (20) listValue -> . VARIABLE LBRACKET expression RBRACKET
+    (25) function_call -> . VARIABLE LPAREN RPAREN
+    (26) function_call -> . VARIABLE LPAREN params RPAREN
+
+    VARIABLE        shift and go to state 26
+    STRING          shift and go to state 7
+    LBRACKET        shift and go to state 10
+    NUMBER          shift and go to state 11
+    LPAREN          shift and go to state 12
+
+    expression                     shift and go to state 27
+    flow                           shift and go to state 28
+    term                           shift and go to state 4
+    string_def                     shift and go to state 5
+    exponent                       shift and go to state 6
+    factor                         shift and go to state 8
+    listValue                      shift and go to state 9
+    function_call                  shift and go to state 13
+
+state 15
+
+    (20) listValue -> VARIABLE LBRACKET . expression RBRACKET
+    (9) expression -> . expression PLUS term
+    (10) expression -> . expression MINUS term
+    (11) expression -> . term
+    (12) expression -> . string_def
+    (14) term -> . exponent
+    (15) term -> . term TIMES exponent
+    (16) term -> . term DIV exponent
+    (13) string_def -> . STRING
+    (17) exponent -> . factor
+    (18) exponent -> . factor EXP factor
+    (3) factor -> . listValue
+    (19) factor -> . LBRACKET params RBRACKET
+    (21) factor -> . NUMBER
+    (22) factor -> . VARIABLE
+    (23) factor -> . LPAREN expression RPAREN
+    (24) factor -> . function_call
+    (20) listValue -> . VARIABLE LBRACKET expression RBRACKET
+    (25) function_call -> . VARIABLE LPAREN RPAREN
+    (26) function_call -> . VARIABLE LPAREN params RPAREN
+
+    STRING          shift and go to state 7
+    LBRACKET        shift and go to state 10
+    NUMBER          shift and go to state 11
+    VARIABLE        shift and go to state 24
+    LPAREN          shift and go to state 12
+
+    expression                     shift and go to state 29
+    term                           shift and go to state 4
+    string_def                     shift and go to state 5
+    exponent                       shift and go to state 6
+    factor                         shift and go to state 8
+    listValue                      shift and go to state 9
+    function_call                  shift and go to state 13
+
+state 16
+
+    (25) function_call -> VARIABLE LPAREN . RPAREN
+    (26) function_call -> VARIABLE LPAREN . params RPAREN
+    (27) params -> . params COMMA expression
+    (28) params -> . expression
+    (9) expression -> . expression PLUS term
+    (10) expression -> . expression MINUS term
+    (11) expression -> . term
+    (12) expression -> . string_def
+    (14) term -> . exponent
+    (15) term -> . term TIMES exponent
+    (16) term -> . term DIV exponent
+    (13) string_def -> . STRING
+    (17) exponent -> . factor
+    (18) exponent -> . factor EXP factor
+    (3) factor -> . listValue
+    (19) factor -> . LBRACKET params RBRACKET
+    (21) factor -> . NUMBER
+    (22) factor -> . VARIABLE
+    (23) factor -> . LPAREN expression RPAREN
+    (24) factor -> . function_call
+    (20) listValue -> . VARIABLE LBRACKET expression RBRACKET
+    (25) function_call -> . VARIABLE LPAREN RPAREN
+    (26) function_call -> . VARIABLE LPAREN params RPAREN
+
+    RPAREN          shift and go to state 30
+    STRING          shift and go to state 7
+    LBRACKET        shift and go to state 10
+    NUMBER          shift and go to state 11
+    VARIABLE        shift and go to state 24
+    LPAREN          shift and go to state 12
+
+    params                         shift and go to state 31
+    expression                     shift and go to state 23
+    term                           shift and go to state 4
+    string_def                     shift and go to state 5
+    exponent                       shift and go to state 6
+    factor                         shift and go to state 8
+    listValue                      shift and go to state 9
+    function_call                  shift and go to state 13
+
+state 17
+
+    (9) expression -> expression PLUS . term
+    (14) term -> . exponent
+    (15) term -> . term TIMES exponent
+    (16) term -> . term DIV exponent
+    (17) exponent -> . factor
+    (18) exponent -> . factor EXP factor
+    (3) factor -> . listValue
+    (19) factor -> . LBRACKET params RBRACKET
+    (21) factor -> . NUMBER
+    (22) factor -> . VARIABLE
+    (23) factor -> . LPAREN expression RPAREN
+    (24) factor -> . function_call
+    (20) listValue -> . VARIABLE LBRACKET expression RBRACKET
+    (25) function_call -> . VARIABLE LPAREN RPAREN
+    (26) function_call -> . VARIABLE LPAREN params RPAREN
+
+    LBRACKET        shift and go to state 10
+    NUMBER          shift and go to state 11
+    VARIABLE        shift and go to state 24
+    LPAREN          shift and go to state 12
+
+    term                           shift and go to state 32
+    exponent                       shift and go to state 6
+    factor                         shift and go to state 8
+    listValue                      shift and go to state 9
+    function_call                  shift and go to state 13
+
+state 18
+
+    (10) expression -> expression MINUS . term
+    (14) term -> . exponent
+    (15) term -> . term TIMES exponent
+    (16) term -> . term DIV exponent
+    (17) exponent -> . factor
+    (18) exponent -> . factor EXP factor
+    (3) factor -> . listValue
+    (19) factor -> . LBRACKET params RBRACKET
+    (21) factor -> . NUMBER
+    (22) factor -> . VARIABLE
+    (23) factor -> . LPAREN expression RPAREN
+    (24) factor -> . function_call
+    (20) listValue -> . VARIABLE LBRACKET expression RBRACKET
+    (25) function_call -> . VARIABLE LPAREN RPAREN
+    (26) function_call -> . VARIABLE LPAREN params RPAREN
+
+    LBRACKET        shift and go to state 10
+    NUMBER          shift and go to state 11
+    VARIABLE        shift and go to state 24
+    LPAREN          shift and go to state 12
+
+    term                           shift and go to state 33
+    exponent                       shift and go to state 6
+    factor                         shift and go to state 8
+    listValue                      shift and go to state 9
+    function_call                  shift and go to state 13
+
+state 19
+
+    (15) term -> term TIMES . exponent
+    (17) exponent -> . factor
+    (18) exponent -> . factor EXP factor
+    (3) factor -> . listValue
+    (19) factor -> . LBRACKET params RBRACKET
+    (21) factor -> . NUMBER
+    (22) factor -> . VARIABLE
+    (23) factor -> . LPAREN expression RPAREN
+    (24) factor -> . function_call
+    (20) listValue -> . VARIABLE LBRACKET expression RBRACKET
+    (25) function_call -> . VARIABLE LPAREN RPAREN
+    (26) function_call -> . VARIABLE LPAREN params RPAREN
+
+    LBRACKET        shift and go to state 10
+    NUMBER          shift and go to state 11
+    VARIABLE        shift and go to state 24
+    LPAREN          shift and go to state 12
+
+    exponent                       shift and go to state 34
+    factor                         shift and go to state 8
+    listValue                      shift and go to state 9
+    function_call                  shift and go to state 13
+
+state 20
+
+    (16) term -> term DIV . exponent
+    (17) exponent -> . factor
+    (18) exponent -> . factor EXP factor
+    (3) factor -> . listValue
+    (19) factor -> . LBRACKET params RBRACKET
+    (21) factor -> . NUMBER
+    (22) factor -> . VARIABLE
+    (23) factor -> . LPAREN expression RPAREN
+    (24) factor -> . function_call
+    (20) listValue -> . VARIABLE LBRACKET expression RBRACKET
+    (25) function_call -> . VARIABLE LPAREN RPAREN
+    (26) function_call -> . VARIABLE LPAREN params RPAREN
+
+    LBRACKET        shift and go to state 10
+    NUMBER          shift and go to state 11
+    VARIABLE        shift and go to state 24
+    LPAREN          shift and go to state 12
+
+    exponent                       shift and go to state 35
+    factor                         shift and go to state 8
+    listValue                      shift and go to state 9
+    function_call                  shift and go to state 13
+
+state 21
+
+    (18) exponent -> factor EXP . factor
+    (3) factor -> . listValue
+    (19) factor -> . LBRACKET params RBRACKET
+    (21) factor -> . NUMBER
+    (22) factor -> . VARIABLE
+    (23) factor -> . LPAREN expression RPAREN
+    (24) factor -> . function_call
+    (20) listValue -> . VARIABLE LBRACKET expression RBRACKET
+    (25) function_call -> . VARIABLE LPAREN RPAREN
+    (26) function_call -> . VARIABLE LPAREN params RPAREN
+
+    LBRACKET        shift and go to state 10
+    NUMBER          shift and go to state 11
+    VARIABLE        shift and go to state 24
+    LPAREN          shift and go to state 12
+
+    factor                         shift and go to state 36
+    listValue                      shift and go to state 9
+    function_call                  shift and go to state 13
+
+state 22
+
+    (19) factor -> LBRACKET params . RBRACKET
+    (27) params -> params . COMMA expression
+
+    RBRACKET        shift and go to state 37
+    COMMA           shift and go to state 38
+
+
+state 23
+
+    (28) params -> expression .
+    (9) expression -> expression . PLUS term
+    (10) expression -> expression . MINUS term
+
+    RBRACKET        reduce using rule 28 (params -> expression .)
+    COMMA           reduce using rule 28 (params -> expression .)
+    RPAREN          reduce using rule 28 (params -> expression .)
+    PLUS            shift and go to state 17
+    MINUS           shift and go to state 18
+
+
+state 24
+
+    (22) factor -> VARIABLE .
+    (20) listValue -> VARIABLE . LBRACKET expression RBRACKET
+    (25) function_call -> VARIABLE . LPAREN RPAREN
+    (26) function_call -> VARIABLE . LPAREN params RPAREN
+
+    EXP             reduce using rule 22 (factor -> VARIABLE .)
+    TIMES           reduce using rule 22 (factor -> VARIABLE .)
+    DIV             reduce using rule 22 (factor -> VARIABLE .)
+    PLUS            reduce using rule 22 (factor -> VARIABLE .)
+    MINUS           reduce using rule 22 (factor -> VARIABLE .)
+    RBRACKET        reduce using rule 22 (factor -> VARIABLE .)
+    COMMA           reduce using rule 22 (factor -> VARIABLE .)
+    RPAREN          reduce using rule 22 (factor -> VARIABLE .)
+    $end            reduce using rule 22 (factor -> VARIABLE .)
+    LBRACKET        shift and go to state 15
+    LPAREN          shift and go to state 16
+
+
+state 25
+
+    (23) factor -> LPAREN expression . RPAREN
+    (9) expression -> expression . PLUS term
+    (10) expression -> expression . MINUS term
+
+    RPAREN          shift and go to state 39
+    PLUS            shift and go to state 17
+    MINUS           shift and go to state 18
+
+
+state 26
+
+    (5) flow -> VARIABLE . CONNECT flow_functions
+    (22) factor -> VARIABLE .
+    (20) listValue -> VARIABLE . LBRACKET expression RBRACKET
+    (25) function_call -> VARIABLE . LPAREN RPAREN
+    (26) function_call -> VARIABLE . LPAREN params RPAREN
+
+    CONNECT         shift and go to state 40
+    EXP             reduce using rule 22 (factor -> VARIABLE .)
+    TIMES           reduce using rule 22 (factor -> VARIABLE .)
+    DIV             reduce using rule 22 (factor -> VARIABLE .)
+    PLUS            reduce using rule 22 (factor -> VARIABLE .)
+    MINUS           reduce using rule 22 (factor -> VARIABLE .)
+    $end            reduce using rule 22 (factor -> VARIABLE .)
+    LBRACKET        shift and go to state 15
+    LPAREN          shift and go to state 16
+
+
+state 27
+
+    (1) assignment -> VARIABLE EQUAL expression .
+    (9) expression -> expression . PLUS term
+    (10) expression -> expression . MINUS term
+
+    $end            reduce using rule 1 (assignment -> VARIABLE EQUAL expression .)
+    PLUS            shift and go to state 17
+    MINUS           shift and go to state 18
+
+
+state 28
+
+    (4) assignment -> VARIABLE EQUAL flow .
+
+    $end            reduce using rule 4 (assignment -> VARIABLE EQUAL flow .)
+
+
+state 29
+
+    (20) listValue -> VARIABLE LBRACKET expression . RBRACKET
+    (9) expression -> expression . PLUS term
+    (10) expression -> expression . MINUS term
+
+    RBRACKET        shift and go to state 41
+    PLUS            shift and go to state 17
+    MINUS           shift and go to state 18
+
+
+state 30
+
+    (25) function_call -> VARIABLE LPAREN RPAREN .
+
+    EXP             reduce using rule 25 (function_call -> VARIABLE LPAREN RPAREN .)
+    TIMES           reduce using rule 25 (function_call -> VARIABLE LPAREN RPAREN .)
+    DIV             reduce using rule 25 (function_call -> VARIABLE LPAREN RPAREN .)
+    PLUS            reduce using rule 25 (function_call -> VARIABLE LPAREN RPAREN .)
+    MINUS           reduce using rule 25 (function_call -> VARIABLE LPAREN RPAREN .)
+    $end            reduce using rule 25 (function_call -> VARIABLE LPAREN RPAREN .)
+    RBRACKET        reduce using rule 25 (function_call -> VARIABLE LPAREN RPAREN .)
+    COMMA           reduce using rule 25 (function_call -> VARIABLE LPAREN RPAREN .)
+    RPAREN          reduce using rule 25 (function_call -> VARIABLE LPAREN RPAREN .)
+
+
+state 31
+
+    (26) function_call -> VARIABLE LPAREN params . RPAREN
+    (27) params -> params . COMMA expression
+
+    RPAREN          shift and go to state 42
+    COMMA           shift and go to state 38
+
+
+state 32
+
+    (9) expression -> expression PLUS term .
+    (15) term -> term . TIMES exponent
+    (16) term -> term . DIV exponent
+
+    PLUS            reduce using rule 9 (expression -> expression PLUS term .)
+    MINUS           reduce using rule 9 (expression -> expression PLUS term .)
+    $end            reduce using rule 9 (expression -> expression PLUS term .)
+    RBRACKET        reduce using rule 9 (expression -> expression PLUS term .)
+    COMMA           reduce using rule 9 (expression -> expression PLUS term .)
+    RPAREN          reduce using rule 9 (expression -> expression PLUS term .)
+    TIMES           shift and go to state 19
+    DIV             shift and go to state 20
+
+
+state 33
+
+    (10) expression -> expression MINUS term .
+    (15) term -> term . TIMES exponent
+    (16) term -> term . DIV exponent
+
+    PLUS            reduce using rule 10 (expression -> expression MINUS term .)
+    MINUS           reduce using rule 10 (expression -> expression MINUS term .)
+    $end            reduce using rule 10 (expression -> expression MINUS term .)
+    RBRACKET        reduce using rule 10 (expression -> expression MINUS term .)
+    COMMA           reduce using rule 10 (expression -> expression MINUS term .)
+    RPAREN          reduce using rule 10 (expression -> expression MINUS term .)
+    TIMES           shift and go to state 19
+    DIV             shift and go to state 20
+
+
+state 34
+
+    (15) term -> term TIMES exponent .
+
+    TIMES           reduce using rule 15 (term -> term TIMES exponent .)
+    DIV             reduce using rule 15 (term -> term TIMES exponent .)
+    PLUS            reduce using rule 15 (term -> term TIMES exponent .)
+    MINUS           reduce using rule 15 (term -> term TIMES exponent .)
+    $end            reduce using rule 15 (term -> term TIMES exponent .)
+    RBRACKET        reduce using rule 15 (term -> term TIMES exponent .)
+    COMMA           reduce using rule 15 (term -> term TIMES exponent .)
+    RPAREN          reduce using rule 15 (term -> term TIMES exponent .)
+
+
+state 35
+
+    (16) term -> term DIV exponent .
+
+    TIMES           reduce using rule 16 (term -> term DIV exponent .)
+    DIV             reduce using rule 16 (term -> term DIV exponent .)
+    PLUS            reduce using rule 16 (term -> term DIV exponent .)
+    MINUS           reduce using rule 16 (term -> term DIV exponent .)
+    $end            reduce using rule 16 (term -> term DIV exponent .)
+    RBRACKET        reduce using rule 16 (term -> term DIV exponent .)
+    COMMA           reduce using rule 16 (term -> term DIV exponent .)
+    RPAREN          reduce using rule 16 (term -> term DIV exponent .)
+
+
+state 36
+
+    (18) exponent -> factor EXP factor .
+
+    TIMES           reduce using rule 18 (exponent -> factor EXP factor .)
+    DIV             reduce using rule 18 (exponent -> factor EXP factor .)
+    PLUS            reduce using rule 18 (exponent -> factor EXP factor .)
+    MINUS           reduce using rule 18 (exponent -> factor EXP factor .)
+    $end            reduce using rule 18 (exponent -> factor EXP factor .)
+    RBRACKET        reduce using rule 18 (exponent -> factor EXP factor .)
+    COMMA           reduce using rule 18 (exponent -> factor EXP factor .)
+    RPAREN          reduce using rule 18 (exponent -> factor EXP factor .)
+
+
+state 37
+
+    (19) factor -> LBRACKET params RBRACKET .
+
+    EXP             reduce using rule 19 (factor -> LBRACKET params RBRACKET .)
+    TIMES           reduce using rule 19 (factor -> LBRACKET params RBRACKET .)
+    DIV             reduce using rule 19 (factor -> LBRACKET params RBRACKET .)
+    PLUS            reduce using rule 19 (factor -> LBRACKET params RBRACKET .)
+    MINUS           reduce using rule 19 (factor -> LBRACKET params RBRACKET .)
+    $end            reduce using rule 19 (factor -> LBRACKET params RBRACKET .)
+    RBRACKET        reduce using rule 19 (factor -> LBRACKET params RBRACKET .)
+    COMMA           reduce using rule 19 (factor -> LBRACKET params RBRACKET .)
+    RPAREN          reduce using rule 19 (factor -> LBRACKET params RBRACKET .)
+
+
+state 38
+
+    (27) params -> params COMMA . expression
+    (9) expression -> . expression PLUS term
+    (10) expression -> . expression MINUS term
+    (11) expression -> . term
+    (12) expression -> . string_def
+    (14) term -> . exponent
+    (15) term -> . term TIMES exponent
+    (16) term -> . term DIV exponent
+    (13) string_def -> . STRING
+    (17) exponent -> . factor
+    (18) exponent -> . factor EXP factor
+    (3) factor -> . listValue
+    (19) factor -> . LBRACKET params RBRACKET
+    (21) factor -> . NUMBER
+    (22) factor -> . VARIABLE
+    (23) factor -> . LPAREN expression RPAREN
+    (24) factor -> . function_call
+    (20) listValue -> . VARIABLE LBRACKET expression RBRACKET
+    (25) function_call -> . VARIABLE LPAREN RPAREN
+    (26) function_call -> . VARIABLE LPAREN params RPAREN
+
+    STRING          shift and go to state 7
+    LBRACKET        shift and go to state 10
+    NUMBER          shift and go to state 11
+    VARIABLE        shift and go to state 24
+    LPAREN          shift and go to state 12
+
+    expression                     shift and go to state 43
+    term                           shift and go to state 4
+    string_def                     shift and go to state 5
+    exponent                       shift and go to state 6
+    factor                         shift and go to state 8
+    listValue                      shift and go to state 9
+    function_call                  shift and go to state 13
+
+state 39
+
+    (23) factor -> LPAREN expression RPAREN .
+
+    EXP             reduce using rule 23 (factor -> LPAREN expression RPAREN .)
+    TIMES           reduce using rule 23 (factor -> LPAREN expression RPAREN .)
+    DIV             reduce using rule 23 (factor -> LPAREN expression RPAREN .)
+    PLUS            reduce using rule 23 (factor -> LPAREN expression RPAREN .)
+    MINUS           reduce using rule 23 (factor -> LPAREN expression RPAREN .)
+    $end            reduce using rule 23 (factor -> LPAREN expression RPAREN .)
+    RBRACKET        reduce using rule 23 (factor -> LPAREN expression RPAREN .)
+    COMMA           reduce using rule 23 (factor -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 23 (factor -> LPAREN expression RPAREN .)
+
+
+state 40
+
+    (5) flow -> VARIABLE CONNECT . flow_functions
+    (6) flow_functions -> . flow_function_call CONNECT flow_functions
+    (7) flow_functions -> . flow_function_call
+    (8) flow_function_call -> . VARIABLE LPAREN params RPAREN
+
+    VARIABLE        shift and go to state 44
+
+    flow_functions                 shift and go to state 45
+    flow_function_call             shift and go to state 46
+
+state 41
+
+    (20) listValue -> VARIABLE LBRACKET expression RBRACKET .
+
+    EXP             reduce using rule 20 (listValue -> VARIABLE LBRACKET expression RBRACKET .)
+    TIMES           reduce using rule 20 (listValue -> VARIABLE LBRACKET expression RBRACKET .)
+    DIV             reduce using rule 20 (listValue -> VARIABLE LBRACKET expression RBRACKET .)
+    PLUS            reduce using rule 20 (listValue -> VARIABLE LBRACKET expression RBRACKET .)
+    MINUS           reduce using rule 20 (listValue -> VARIABLE LBRACKET expression RBRACKET .)
+    $end            reduce using rule 20 (listValue -> VARIABLE LBRACKET expression RBRACKET .)
+    RBRACKET        reduce using rule 20 (listValue -> VARIABLE LBRACKET expression RBRACKET .)
+    COMMA           reduce using rule 20 (listValue -> VARIABLE LBRACKET expression RBRACKET .)
+    RPAREN          reduce using rule 20 (listValue -> VARIABLE LBRACKET expression RBRACKET .)
+
+
+state 42
+
+    (26) function_call -> VARIABLE LPAREN params RPAREN .
+
+    EXP             reduce using rule 26 (function_call -> VARIABLE LPAREN params RPAREN .)
+    TIMES           reduce using rule 26 (function_call -> VARIABLE LPAREN params RPAREN .)
+    DIV             reduce using rule 26 (function_call -> VARIABLE LPAREN params RPAREN .)
+    PLUS            reduce using rule 26 (function_call -> VARIABLE LPAREN params RPAREN .)
+    MINUS           reduce using rule 26 (function_call -> VARIABLE LPAREN params RPAREN .)
+    $end            reduce using rule 26 (function_call -> VARIABLE LPAREN params RPAREN .)
+    RBRACKET        reduce using rule 26 (function_call -> VARIABLE LPAREN params RPAREN .)
+    COMMA           reduce using rule 26 (function_call -> VARIABLE LPAREN params RPAREN .)
+    RPAREN          reduce using rule 26 (function_call -> VARIABLE LPAREN params RPAREN .)
+
+
+state 43
+
+    (27) params -> params COMMA expression .
+    (9) expression -> expression . PLUS term
+    (10) expression -> expression . MINUS term
+
+    RBRACKET        reduce using rule 27 (params -> params COMMA expression .)
+    COMMA           reduce using rule 27 (params -> params COMMA expression .)
+    RPAREN          reduce using rule 27 (params -> params COMMA expression .)
+    PLUS            shift and go to state 17
+    MINUS           shift and go to state 18
+
+
+state 44
+
+    (8) flow_function_call -> VARIABLE . LPAREN params RPAREN
+
+    LPAREN          shift and go to state 47
+
+
+state 45
+
+    (5) flow -> VARIABLE CONNECT flow_functions .
+
+    $end            reduce using rule 5 (flow -> VARIABLE CONNECT flow_functions .)
+
+
+state 46
+
+    (6) flow_functions -> flow_function_call . CONNECT flow_functions
+    (7) flow_functions -> flow_function_call .
+
+    CONNECT         shift and go to state 48
+    $end            reduce using rule 7 (flow_functions -> flow_function_call .)
+
+
+state 47
+
+    (8) flow_function_call -> VARIABLE LPAREN . params RPAREN
+    (27) params -> . params COMMA expression
+    (28) params -> . expression
+    (9) expression -> . expression PLUS term
+    (10) expression -> . expression MINUS term
+    (11) expression -> . term
+    (12) expression -> . string_def
+    (14) term -> . exponent
+    (15) term -> . term TIMES exponent
+    (16) term -> . term DIV exponent
+    (13) string_def -> . STRING
+    (17) exponent -> . factor
+    (18) exponent -> . factor EXP factor
+    (3) factor -> . listValue
+    (19) factor -> . LBRACKET params RBRACKET
+    (21) factor -> . NUMBER
+    (22) factor -> . VARIABLE
+    (23) factor -> . LPAREN expression RPAREN
+    (24) factor -> . function_call
+    (20) listValue -> . VARIABLE LBRACKET expression RBRACKET
+    (25) function_call -> . VARIABLE LPAREN RPAREN
+    (26) function_call -> . VARIABLE LPAREN params RPAREN
+
+    STRING          shift and go to state 7
+    LBRACKET        shift and go to state 10
+    NUMBER          shift and go to state 11
+    VARIABLE        shift and go to state 24
+    LPAREN          shift and go to state 12
+
+    params                         shift and go to state 49
+    expression                     shift and go to state 23
+    term                           shift and go to state 4
+    string_def                     shift and go to state 5
+    exponent                       shift and go to state 6
+    factor                         shift and go to state 8
+    listValue                      shift and go to state 9
+    function_call                  shift and go to state 13
+
+state 48
+
+    (6) flow_functions -> flow_function_call CONNECT . flow_functions
+    (6) flow_functions -> . flow_function_call CONNECT flow_functions
+    (7) flow_functions -> . flow_function_call
+    (8) flow_function_call -> . VARIABLE LPAREN params RPAREN
+
+    VARIABLE        shift and go to state 44
+
+    flow_function_call             shift and go to state 46
+    flow_functions                 shift and go to state 50
+
+state 49
+
+    (8) flow_function_call -> VARIABLE LPAREN params . RPAREN
+    (27) params -> params . COMMA expression
+
+    RPAREN          shift and go to state 51
+    COMMA           shift and go to state 38
+
+
+state 50
+
+    (6) flow_functions -> flow_function_call CONNECT flow_functions .
+
+    $end            reduce using rule 6 (flow_functions -> flow_function_call CONNECT flow_functions .)
+
+
+state 51
+
+    (8) flow_function_call -> VARIABLE LPAREN params RPAREN .
+
+    CONNECT         reduce using rule 8 (flow_function_call -> VARIABLE LPAREN params RPAREN .)
+    $end            reduce using rule 8 (flow_function_call -> VARIABLE LPAREN params RPAREN .)
+
