@@ -33,6 +33,13 @@ def search_cv2(function_name):
         pass
     return None
 
+def search_numpy(function_name):
+    try:
+        return getattr(np, function_name)
+    except:
+        pass
+    return None
+
 def gen_vector(*args):
     return np.array(args)
 

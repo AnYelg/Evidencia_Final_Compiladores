@@ -420,6 +420,10 @@ def visit_node(tree, node_id, from_id):
             fn= search_cv2(current_node["value"])
             if fn is not None:
                 return fn(*res)
+            
+            nump= search_numpy(current_node["value"])
+            if nump is not None:
+                return fn(*res)
     if current_node["type"] == "LIST_VALUE":
         return res[0][res[1]]
 
