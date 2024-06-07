@@ -36,19 +36,21 @@ Rule 28    params -> expression
 ## Descripción de Funciones implementadas como herramientas y accesorios a la gramática
 
 Las siguientes funciones se encuentran en nuestro archiivo [library.py](https://github.com/AnYelg/Evidencia_Final_Compiladores/blob/main/codigos/library.py)
+### Load Image
 - Nuestro load image ayuda a tener la ruta en donde se encuentra una imagen
 ```
 def load_image(image_path):
     path = image_path.strip()
     return cv2.imread(path)
 ```
-
+### Load Image Gray
 - Para poder realizar el histograma, se realizo un código para convertir una imagen en escala de grises
 ```
 def load_image_gray(image_path):
     path = image_path.strip()
     return cv2.imread(path, cv2.IMREAD_GRAYSCALE)
 ```
+### Show Histogram
 - Código para realizar histograma de una imagen en nuestro translator
 ```
 def show_histogram(image):
@@ -61,6 +63,7 @@ def show_histogram(image):
     plt.ylabel("Number of Pixels")
     plt.show()
 ```
+### Show Image
 - Funcion para mostrar una imagen 
 ```
 def show_image(image):
@@ -69,6 +72,7 @@ def show_image(image):
     cv2.destroyAllWindows()
     return image
 ```
+### Search cv2
 - Funcion para poder usar las funciones que ofrece cv2
 ```
 def search_cv2(function_name):
@@ -78,6 +82,7 @@ def search_cv2(function_name):
         pass
     return None
 ```
+### Search Numpy
 - Funcion para poder usar las funciones que ofrece numpy
 ```
 def search_numpy(function_name):
@@ -87,11 +92,13 @@ def search_numpy(function_name):
         pass
     return None
 ```
+### Gen Vector
 - Funcion para generar vectores
 ```
 def gen_vector(*args):
     return np.array(args)
 ```
+### Print File
 - Función para imprimir el contenido de un file 
 ```
 def print_file(file_path):
@@ -99,6 +106,7 @@ def print_file(file_path):
         for line in file:
             print(line.strip())
 ```
+### Apply Watershed
 - Funcion de Watershed Algorithm
 ```
 def apply_watershed(image_path):
@@ -164,12 +172,14 @@ End of file
 ```
 Grafo
 <br>
-![Grafo 1.1](https://assets.digitalocean.com/articles/alligator/boo.svg "a title")
+![Grafo 1.1](https://github.com/AnYelg/Evidencia_Final_Compiladores/blob/main/img/grafo1_1.png)
 <br>
-![Grafo 1.2](https://assets.digitalocean.com/articles/alligator/boo.svg "a title")
+![Grafo 1.2](https://github.com/AnYelg/Evidencia_Final_Compiladores/blob/main/img/grafo1_2.png)
 <br>
-![Grafo 1.3](https://assets.digitalocean.com/articles/alligator/boo.svg "a title")
+![Grafo 1.3](https://github.com/AnYelg/Evidencia_Final_Compiladores/blob/main/img/grafo1_3.png)
 ### Implementar flujos de funciones (->) que solo reciban la imagen como parámetro (como show_images)
+Lo que nos servirá este código es poder conectar varias funciones y que se ejecute facilmente, ya que ayuda a cambiar un elemnto consecutivamente sin tener que usar varias lineas de código. Por ejemplo si quisieramos editar una imagen con funciones como blur() luego lines() y finalizar con edges() se podría realizar conectando las funciones con una flecha "->"
+<br>
 Input:
 ```
 b=a->sumAB(2)->sumab(4)
@@ -182,4 +192,36 @@ Result None
 ```
 Grafo
 <br>
-![Grafo 2](https://assets.digitalocean.com/articles/alligator/boo.svg "a title")
+![Grafo 2](https://github.com/AnYelg/Evidencia_Final_Compiladores/blob/main/img/grafo2.png)
+
+### Aceptar None como valor de la gramática para inicialización de variables
+Sí quisieramos declarar una variable como None, nuestro traductor ya tiene el valor en nuestra tabla de simbolos.
+<br>
+Input y Output:
+```
+>a=None
+Result None
+>a
+Result None
+```
+Grafo
+<br>
+![Grafo 3](https://github.com/AnYelg/Evidencia_Final_Compiladores/blob/main/img/grafo3_1.png)
+<br>
+![Grafo 3](https://github.com/AnYelg/Evidencia_Final_Compiladores/blob/main/img/grafo3_2.png)
+
+### Aceptar cualquier función de numpy para manejo de matrices como np.where, np.mean, np.std. Al menos 9 de ellas.
+Sí se quisiera insertar una funcion de la libreria numpy, el traductor lo pudiera realizar con el código en la libreria [Search Numpy](###search-numpy)
+<br>
+Input and Ouput:
+```
+>a=tuple(1,2,3,4)
+Result [1 2 3 4]
+>mean(a)
+Result (2.5, 0.0, 0.0, 0.0)
+```
+Grafo
+<br>
+![Grafo 4](https://github.com/AnYelg/Evidencia_Final_Compiladores/blob/main/img/grafo4_1.png)
+<br>
+![Grafo 4](https://github.com/AnYelg/Evidencia_Final_Compiladores/blob/main/img/grafo4_2.png)
