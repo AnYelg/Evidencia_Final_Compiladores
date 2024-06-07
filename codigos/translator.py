@@ -44,6 +44,8 @@ symbol_table["tuple"]=gen_vector
 symbol_table["fileRead"]=print_file
 symbol_table["loadGray"]=load_image_gray
 symbol_table["histogram"]=show_histogram
+symbol_table["watershed"] = apply_watershed
+
 
 tokens = (
     'NUMBER',
