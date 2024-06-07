@@ -451,6 +451,7 @@ def visit_node(tree, node_id, from_id):
 
 parser = yacc.yacc()
 
+
 while True:
     data = input(">")
 
@@ -460,6 +461,32 @@ while True:
     if(data == 'st'):
         print(symbol_table)
         continue
+
+    if data.startswith('load '):
+        filename = data.split(' ')[1]
+        try:
+            with open(filename, 'r') as file:
+                file_content = file.readlines()  # Read lines
+                for line in file_content:
+                    line = line.strip()  # Strip any leading/trailing whitespace
+                    if line:
+                        lexer.input(line)
+
+                        parseGraph = nx.Graph()
+                        NODE_COUNTER = 0
+                        root = add_node({"type":"INITIAL", "label":"INIT"})
+                        result = parser.parse(line)
+                        parseGraph.add_edge(root["counter"], result["counter"])
+                        labels = nx.get_node_attributes(parseGraph, "label")
+                        nx.draw(parseGraph, labels=labels, with_labels=True)
+                        plt.show()
+                        result = execute_parse_tree(parseGraph)
+                        print("Result", result)
+        except FileNotFoundError:
+            print(f"File {filename} not found.")
+            continue
+
+
 
     parseGraph = nx.Graph()
     NODE_COUNTER = 0
