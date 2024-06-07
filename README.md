@@ -280,8 +280,9 @@ Grafo
 ![Grafo 6](https://github.com/AnYelg/Evidencia_Final_Compiladores/blob/main/img/grafo6_4.png)
 
 ### Implementación de un algoritmo complejo como herramienta en el lenguaje WaterShed
-<br>
-La función apply_watershed en Python carga una imagen, la convierte a escala de grises y aplica un binarizado inverso para separar el primer plano del fondo. Luego, elimina el ruido mediante operaciones morfológicas las cuales manipulan la forma de los objetos mediante transformaciones. Marca las regiones desconocidas y aplica el algoritmo de watershed para segmentar la imagen, resaltando las fronteras detectadas en azul, y mostrar la imagen segmentada. Usamos la funcion que se encuentra en nuestra libreria [Apply Watershed](#apply-watershed)
+
+La función apply_watershed en Python carga una imagen, la convierte a escala de grises y aplica un binarizado inverso para separar el primer plano del fondo. Luego, elimina el ruido mediante operaciones morfológicas las cuales manipulan la forma de los objetos mediante transformaciones. Marca las regiones desconocidas y aplica el algoritmo de watershed para segmentar la imagen, resaltando las fronteras detectadas en azul, y mostrar la imagen segmentada. Usamos la funcion que se encuentra en nuestra libreria  [Apply Watershed](#apply-watershed)
+
 <br>
 Input:
 
