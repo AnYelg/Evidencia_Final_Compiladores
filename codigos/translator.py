@@ -38,7 +38,7 @@ def sumAB(a,b):
 symbol_table["myPrint"] = myPrint
 symbol_table["do_nothing"] = do_nothing
 symbol_table["sumAB"] = sumAB
-symbol_table["load"]=load_image
+symbol_table["loadImage"]=load_image
 symbol_table["show"]=show_image
 symbol_table["tuple"]=gen_vector
 symbol_table["fileRead"]=print_file
@@ -468,9 +468,9 @@ while True:
         filename = data.split(' ')[1]
         try:
             with open(filename, 'r') as file:
-                file_content = file.readlines()  # Read lines
+                file_content = file.readlines()
                 for line in file_content:
-                    line = line.strip()  # Strip any leading/trailing whitespace
+                    line = line.strip() 
                     if line:
                         lexer.input(line)
 
@@ -483,7 +483,10 @@ while True:
                         nx.draw(parseGraph, labels=labels, with_labels=True)
                         plt.show()
                         result = execute_parse_tree(parseGraph)
+                        print("Command in file: ",line)
                         print("Result", result)
+            print("End of file")
+            continue
         except FileNotFoundError:
             print(f"File {filename} not found.")
             continue
