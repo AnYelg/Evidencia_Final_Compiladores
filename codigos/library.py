@@ -51,8 +51,8 @@ def print_file(file_path):
 def apply_watershed(image_path):
     # Load the image
     img = cv2.imread(image_path)
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     assert img is not None, "file could not be read, check with os.path.exists()"
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     ret, thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
 
     # Noise removal
@@ -77,7 +77,7 @@ def apply_watershed(image_path):
     markers = markers + 1
 
     # Now, mark the region of unknown with zero
-    markers[unknown == 0] = 0
+    markers[unknown == 255] = 0
 
     markers = cv2.watershed(img, markers)
     img[markers == -1] = [255, 0, 0]
