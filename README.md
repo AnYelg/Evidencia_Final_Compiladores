@@ -211,7 +211,7 @@ Grafo
 ![Grafo 3](https://github.com/AnYelg/Evidencia_Final_Compiladores/blob/main/img/grafo3_2.png)
 
 ### Aceptar cualquier función de numpy para manejo de matrices como np.where, np.mean, np.std. Al menos 9 de ellas.
-Sí se quisiera insertar una funcion de la libreria numpy, el traductor lo pudiera realizar con el código en la libreria [Search Numpy](###search-numpy)
+Sí se quisiera insertar una funcion de la libreria numpy, el traductor lo pudiera realizar con el código en la libreria [Search Numpy](#search-numpy)
 <br>
 Input and Ouput:
 ```
@@ -225,3 +225,73 @@ Grafo
 ![Grafo 4](https://github.com/AnYelg/Evidencia_Final_Compiladores/blob/main/img/grafo4_1.png)
 <br>
 ![Grafo 4](https://github.com/AnYelg/Evidencia_Final_Compiladores/blob/main/img/grafo4_2.png)
+
+### Implementación de visualización de histogramas con opencv
+Con la ayuda de [OpenCV](https://docs.opencv.org/4.x/d1/db7/tutorial_py_histogram_begins.html) se implemento una función para poder crear un histograma con los valores de los pixeles de una imagen con las siguientes funciones de nuestra libreria:
+- [Show Histogram](#show-histogram)
+- [Load Image Gray](#load-image-gray)
+<br>
+Input and Ouput:
+```
+>b=loadGray("image.png")
+Result [[72 72 70 ... 87 87 87]
+ [72 72 70 ... 87 87 87]
+ [70 70 70 ... 87 87 87]
+ ...
+ [28 21 28 ... 53 53 53]
+ [21 21 21 ... 46 53 56]
+ [21 21 21 ... 46 53 56]]
+>histogram(b)
+Result None
+```
+Grafo
+<br>
+![Grafo 5](https://github.com/AnYelg/Evidencia_Final_Compiladores/blob/main/img/grafo5_1.png)
+<br>
+![Grafo 5](https://github.com/AnYelg/Evidencia_Final_Compiladores/blob/main/img/grafo5_2.png)
+<br>
+![Output 5](https://github.com/AnYelg/Evidencia_Final_Compiladores/blob/main/img/output5_1.png)
+<br>
+![Output 5](https://github.com/AnYelg/Evidencia_Final_Compiladores/blob/main/img/output5_2.png)
+
+### Aceptar el manejo de listas: A[10]=12, A[0:12] = 20, A[3][4] = 4
+<br>
+Al momento que nuestro traductor detecte que se introducio una lista se pueden realizar operaciones con los contenidos de estas
+
+Input and Ouput:
+```
+>x=[13,5,67,23,90]
+Result [13, 5, 67, 23, 90]
+>x
+Result [13, 5, 67, 23, 90]
+>x[4]
+Result 90
+>x[4]*x[1]
+Result 450
+```
+Grafo
+<br>
+![Grafo 6](https://github.com/AnYelg/Evidencia_Final_Compiladores/blob/main/img/grafo6_1.png)
+<br>
+![Grafo 6](https://github.com/AnYelg/Evidencia_Final_Compiladores/blob/main/img/grafo6_2.png)
+<br>
+![Grafo 6](https://github.com/AnYelg/Evidencia_Final_Compiladores/blob/main/img/grafo6_3.png)
+<br>
+![Grafo 6](https://github.com/AnYelg/Evidencia_Final_Compiladores/blob/main/img/grafo6_4.png)
+
+### Implementación de un algoritmo complejo como herramienta en el lenguaje WaterShed
+<br>
+La función apply_watershed en Python carga una imagen, la convierte a escala de grises y aplica un binarizado inverso para separar el primer plano del fondo. Luego, elimina el ruido mediante operaciones morfológicas las cuales manipulan la forma de los objetos mediante transformaciones. Marca las regiones desconocidas y aplica el algoritmo de watershed para segmentar la imagen, resaltando las fronteras detectadas en azul, y mostrar la imagen segmentada.
+<br>
+Input:
+
+```
+watershed("coins.png")
+```
+Output:
+<br>
+![output 7](https://github.com/AnYelg/Evidencia_Final_Compiladores/blob/main/img/output7.png)
+<br>
+Grafo:
+<br>
+![Grafo 7](https://github.com/AnYelg/Evidencia_Final_Compiladores/blob/main/img/grafo7.png)
