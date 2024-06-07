@@ -148,14 +148,15 @@ def apply_watershed(image_path):
 
 ## Demostración de una o varias expresiones y el árbol de sintaxis abstracto demostrando
 
-```
-```
 Para correr nuestro traductor correr en tu terminal la versión de python y el archivo [translator.py](https://github.com/AnYelg/Evidencia_Final_Compiladores/blob/main/codigos/translator.py) que se encuentra en la carpeta de codigos
 ```
 python3 translator.py
 ```
 
 ### Aceptar archivos y ejecutar el contenido
+
+Se verifica que el usuario cargue un archivo con 'load' donde se se extrae el este mismo, intenta abrirlo y, en caso de que sea exitoso, lo lee línea por línea, eliminando los espacios en blanco (utilizando la función strip()), y ejecutando cada una. Por último se agrega y visualiza un nuevo grafo y al mismo tiempo se muestra el resultado de cada línea hasta terminar.  (En caso de el que el archivo falle al abrirse se notificará al usuario).
+
 Input:
 ```
 load test.txt
@@ -211,7 +212,7 @@ Grafo
 ![Grafo 3](https://github.com/AnYelg/Evidencia_Final_Compiladores/blob/main/img/grafo3_2.png)
 
 ### Aceptar cualquier función de numpy para manejo de matrices como np.where, np.mean, np.std. Al menos 9 de ellas.
-Sí se quisiera insertar una funcion de la libreria numpy, el traductor lo pudiera realizar con el código en la libreria [Search Numpy](#search-numpy)
+Sí se quisiera insertar una funcion de la libreria numpy, el traductor lo pudiera realizar con el código en la libreria [Search Numpy](#search-numpy). Con esa sección de código se buscará en la libreria de numpy si lo que insertó el usuario es una función de numpy, y si es correcto la ejecutará e imprimirá el resultado. En este input usamos la función de mean() pero se puede insertar cualquier función de numpy.
 <br>
 Input and Ouput:
 ```
@@ -297,3 +298,8 @@ Output:
 Grafo:
 <br>
 ![Grafo 7](https://github.com/AnYelg/Evidencia_Final_Compiladores/blob/main/img/grafo7.png)
+
+# Referencias
+- Usamos copilot para ayudarnos a completar varias de las funciones que realizamos
+- Para la base de las funciones checamos las clases del profesor José Carlos Mondragón Guadarrama para entender la lógica del translator
+
