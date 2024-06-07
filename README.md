@@ -164,11 +164,11 @@ End of file
 ```
 Grafo
 <br>
-![Grafo 1.1](https://assets.digitalocean.com/articles/alligator/boo.svg "a title")
+![Grafo 1.1](https://github.com/AnYelg/Evidencia_Final_Compiladores/blob/main/img/grafo1_1.png)
 <br>
-![Grafo 1.2](https://assets.digitalocean.com/articles/alligator/boo.svg "a title")
+![Grafo 1.2](https://github.com/AnYelg/Evidencia_Final_Compiladores/blob/main/img/grafo1_2.png)
 <br>
-![Grafo 1.3](https://assets.digitalocean.com/articles/alligator/boo.svg "a title")
+![Grafo 1.3](https://github.com/AnYelg/Evidencia_Final_Compiladores/blob/main/img/grafo1_3.png)
 ### Implementar flujos de funciones (->) que solo reciban la imagen como parámetro (como show_images)
 Input:
 ```
@@ -182,4 +182,4 @@ Result None
 ```
 Grafo
 <br>
-![Grafo 2](https://assets.digitalocean.com/articles/alligator/boo.svg "a title")
+![Grafo 2](https://github.com/AnYelg/Evidencia_Final_Compiladores/blob/main/img/grafo2.png)
